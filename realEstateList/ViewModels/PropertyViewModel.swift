@@ -12,6 +12,7 @@ import RxCocoa
 
 struct PropertyListViewModel {
     let propertyViewModels: [PropertyViewModel]
+    var favouritePropertiesViewModel = [PropertyViewModel]()
 }
 
 extension PropertyListViewModel {
@@ -47,5 +48,9 @@ extension PropertyViewModel {
     var thumbNailURL: Observable<String> {
         return Observable<String>.just(property.thumb)
     }
+    var id: Observable<Int> {
+        return Observable<Int>.just(property.booliId)
+    }
+    
     
 }

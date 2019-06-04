@@ -13,7 +13,7 @@ struct PropertyResponse: Decodable {
     let results: [Property]
 }
 
-struct Property: Decodable {
+struct Property: Codable {
     let booliId: Int
     let listPrice: Int
     let published: String

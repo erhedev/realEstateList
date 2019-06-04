@@ -17,6 +17,7 @@ class PropertyListViewController: UIViewController {
     let disposeBag = DisposeBag()
     private var propertyListViewModel: PropertyListViewModel!
 
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -25,7 +26,6 @@ class PropertyListViewController: UIViewController {
         propertiesTableView.register(UINib.init(nibName: "PropertyCell", bundle: nil), forCellReuseIdentifier: "PropertyCell")
         
     }
-    
     
     private func populateProprerties() {
         
