@@ -17,7 +17,6 @@ class PropertyListViewController: UIViewController {
     let disposeBag = DisposeBag()
     private var propertyListViewModel: PropertyListViewModel!
 
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -57,16 +56,41 @@ extension PropertyListViewController: UITableViewDelegate, UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "PropertyCell", for: indexPath) as? PropertyCell else {
             fatalError("PropertyCell not found")
         }
         
+        cell.indexPath = indexPath.row
+        
+        var utility = Utility.Instance.checkedCells
+        if utility.contains(indexPath.row){
+            var vm = propertyListViewModel.propertyAt(indexPath.row)
+            vm.isFavourite = true
+            
+            print(vm.address)
+            print(vm.id)
+            print(vm.isFavourite)
+
+        }
+    
         let propertyViewModel = self.propertyListViewModel.propertyAt(indexPath.row)
+        
+        propertyViewModel.isOn.subscribe(onNext: { value in
+            print(value)
+            if utility.contains(indexPath.row){
+                cell.activateButton(bool: true)
+            } else {cell.activateButton(bool: value)}
+        })
+        
         
         propertyViewModel.thumbNailURL.subscribe(onNext: { element in
             print(element)
             cell.loadImageFromURL(url: element)
+        }).disposed(by: disposeBag)
+        
+        propertyViewModel.id.subscribe(onNext: { element in
+            print(element)
+            cell.id = String(element)
         }).disposed(by: disposeBag)
         
         propertyViewModel.address.asDriver(onErrorJustReturn: "")
@@ -82,4 +106,3 @@ extension PropertyListViewController: UITableViewDelegate, UITableViewDataSource
     }
     
 }
-

@@ -30,6 +30,7 @@ extension PropertyListViewModel {
 struct PropertyViewModel {
     
     let property: Property
+    var isFavourite: Bool = false
     
     init(_ property: Property) {
         self.property = property
@@ -50,6 +51,9 @@ extension PropertyViewModel {
     }
     var id: Observable<Int> {
         return Observable<Int>.just(property.booliId)
+    }
+    var isOn: Observable<Bool> {
+        return Observable<Bool>.just(self.isFavourite)
     }
     
     

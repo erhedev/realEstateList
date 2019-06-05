@@ -43,24 +43,12 @@
                             </label>
                         </subviews>
                     </stackView>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5fw-yJ-YZj">
-                        <rect key="frame" x="274" y="34.5" width="30" height="30"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="30" id="Mng-y8-YeD"/>
-                            <constraint firstAttribute="height" constant="30" id="WIw-ng-w7u"/>
-                        </constraints>
-                        <state key="normal" title="Button" image="icons8-star-30"/>
-                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="uHE-ju-SRl" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="4os-2j-uuh"/>
                     <constraint firstAttribute="bottom" secondItem="xxs-dK-HjR" secondAttribute="bottom" constant="5" id="Doc-y8-tdA"/>
                     <constraint firstItem="xxs-dK-HjR" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="EaQ-aC-3wK"/>
-                    <constraint firstItem="5fw-yJ-YZj" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="34" id="XwK-9z-L7R"/>
                     <constraint firstItem="uHE-ju-SRl" firstAttribute="leading" secondItem="xxs-dK-HjR" secondAttribute="trailing" constant="10" id="dWg-so-5VP"/>
-                    <constraint firstAttribute="bottom" secondItem="5fw-yJ-YZj" secondAttribute="bottom" constant="35.5" id="gj4-an-fJh"/>
-                    <constraint firstItem="5fw-yJ-YZj" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="ieU-cz-tzT"/>
-                    <constraint firstItem="5fw-yJ-YZj" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="pfn-Dy-zr9"/>
                     <constraint firstItem="xxs-dK-HjR" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="zUS-RG-H9N"/>
                 </constraints>
             </tableViewCellContentView>
@@ -73,7 +61,4 @@
             <point key="canvasLocation" x="137.68115942028987" y="118.52678571428571"/>
         </tableViewCell>
     </objects>
-    <resources>
-        <image name="icons8-star-30" width="30" height="30"/>
-    </resources>
 </document>
