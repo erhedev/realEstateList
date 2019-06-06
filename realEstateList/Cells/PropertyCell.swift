@@ -31,23 +31,9 @@ class PropertyCell: UITableViewCell {
         prepareStarButton()
     }
     
-//    override func setSelected(_ selected: Bool, animated: Bool) {
-//        super.setSelected(selected, animated: animated)
-//        if (selected) {
-//            self.backgroundColor = UIColor.init(cgColor: #colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1))
-//        } else {
-//            self.backgroundColor = UIColor.init(cgColor: #colorLiteral(red: 0.7254902124, green: 0.4784313738, blue: 0.09803921729, alpha: 1))
-//        }
-//    }
-    
     func loadImageFromURL(url: String) {
         propertyImageView.sd_setImage(with: URL(string: url), placeholderImage: nil)
     }
-    
-//    func createButton () {
-//        let starButton = FavStarButton(type: .system)
-//
-//    }
     
     func prepareStarButton() {
         starButton.rx.tap
@@ -72,10 +58,14 @@ class PropertyCell: UITableViewCell {
         if isOn {
             Utility.Instance.favIDs.append(id)
             Utility.Instance.checkedCells.append(self.indexPath)
+            Utility.Instance.propertyListViewModel.setPropertyVmFavAt(self.indexPath, bool: true)
+            print("Hej: \(Utility.Instance.propertyListViewModel.propertyAt(self.indexPath))")
         }else{
             // remove unchecked cell from list
             if let index = Utility.Instance.checkedCells.firstIndex(of: self.indexPath){
                 Utility.Instance.checkedCells.remove(at: index)
+                Utility.Instance.propertyListViewModel.setPropertyVmFavAt(self.indexPath, bool: false)
+                print("Tja: \(Utility.Instance.propertyListViewModel.propertyAt(self.indexPath))")
             }
             if let fav = Utility.Instance.favIDs.firstIndex(of: id) {
                 Utility.Instance.favIDs.remove(at: fav)

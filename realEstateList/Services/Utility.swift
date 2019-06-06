@@ -16,6 +16,6 @@ class Utility {
     }
     
     var favIDs = [Int]()
-    
     var checkedCells = [Int]()
+    var propertyListViewModel: PropertyListViewModel!
 }

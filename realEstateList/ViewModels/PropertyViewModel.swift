@@ -11,8 +11,7 @@ import RxSwift
 import RxCocoa
 
 struct PropertyListViewModel {
-    let propertyViewModels: [PropertyViewModel]
-    var favouritePropertiesViewModel = [PropertyViewModel]()
+    var propertyViewModels: [PropertyViewModel]
 }
 
 extension PropertyListViewModel {
@@ -25,18 +24,37 @@ extension PropertyListViewModel {
     func propertyAt(_ index: Int) -> PropertyViewModel {
         return self.propertyViewModels[index]
     }
+    
+    mutating func setPropertyVmFavAt(_ index: Int, bool: Bool) {
+        self.propertyViewModels[index].isFavourite = bool
+    }
+    
+    func getFavourites() -> [Property] {
+        var favourites = [Property]()
+        for property in  self.propertyViewModels {
+            if property.isFavourite {
+                 favourites.append(property.property)
+            }
+        }
+        return favourites
+    }
 }
 
+
 struct PropertyViewModel {
-    
     let property: Property
     var isFavourite: Bool = false
     
     init(_ property: Property) {
         self.property = property
     }
-    
 }
+
+//extension PropertyViewModel {
+//    mutating func setAsFavourite(bool: Bool) {
+//        self.isFavourite = bool
+//    }
+//}
 
 extension PropertyViewModel {
    

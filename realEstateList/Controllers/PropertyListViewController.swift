@@ -15,7 +15,7 @@ class PropertyListViewController: UIViewController {
     @IBOutlet weak var propertiesTableView: UITableView!
   
     let disposeBag = DisposeBag()
-    private var propertyListViewModel: PropertyListViewModel!
+//    private var propertyListViewModel: PropertyListViewModel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +24,12 @@ class PropertyListViewController: UIViewController {
         
         propertiesTableView.register(UINib.init(nibName: "PropertyCell", bundle: nil), forCellReuseIdentifier: "PropertyCell")
         
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        print("viewDidAppear")
+        self.propertiesTableView.reloadData()
     }
     
     private func populateProprerties() {
@@ -36,7 +42,8 @@ class PropertyListViewController: UIViewController {
                 print(propertyResponse)
                 let properties = propertyResponse.results
                 print(properties)
-                self.propertyListViewModel = PropertyListViewModel(properties)
+                Utility.Instance.propertyListViewModel = PropertyListViewModel(properties)
+                    print(Utility.Instance.propertyListViewModel.propertyAt(0))
                 DispatchQueue.main.async {
                     self.propertiesTableView.reloadData()
                 }
@@ -52,7 +59,7 @@ extension PropertyListViewController: UITableViewDelegate, UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.propertyListViewModel == nil ? 0: self.propertyListViewModel.propertyViewModels.count
+        return Utility.Instance.propertyListViewModel == nil ? 0: Utility.Instance.propertyListViewModel.propertyViewModels.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -63,25 +70,26 @@ extension PropertyListViewController: UITableViewDelegate, UITableViewDataSource
         cell.indexPath = indexPath.row
         
         var utility = Utility.Instance.checkedCells
-        if utility.contains(indexPath.row){
-            var vm = propertyListViewModel.propertyAt(indexPath.row)
-            vm.isFavourite = true
-            
-            print(vm.address)
-            print(vm.id)
-            print(vm.isFavourite)
-
-        }
+//        if utility.contains(indexPath.row){
+//            Utility.Instance.propertyListViewModel.setPropertyVmFavAt(indexPath.row, bool: true)
+////            var vm = Utility.Instance.propertyListViewModel.propertyAt(indexPath.row)
+////            vm.isFavourite = true
+////
+////            print(vm.address)
+////            print(vm.id)
+////            print(vm.isFavourite)
+//
+//        }
     
-        let propertyViewModel = self.propertyListViewModel.propertyAt(indexPath.row)
+        var propertyViewModel = Utility.Instance.propertyListViewModel.propertyAt(indexPath.row)
         
         propertyViewModel.isOn.subscribe(onNext: { value in
             print(value)
             if utility.contains(indexPath.row){
-                cell.activateButton(bool: true)
+                print(Utility.Instance.propertyListViewModel.propertyAt(indexPath.row))
+                cell.activateButton(bool: value)
             } else {cell.activateButton(bool: value)}
         })
-        
         
         propertyViewModel.thumbNailURL.subscribe(onNext: { element in
             print(element)
