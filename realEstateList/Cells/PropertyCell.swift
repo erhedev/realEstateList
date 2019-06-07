@@ -22,6 +22,8 @@ class PropertyCell: UITableViewCell {
     var isOn: Bool = false
     var indexPath: Int = 0
     
+    private var localStorageService = LocalStorageService()
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         self.backgroundColor = UIColor.init(cgColor: #colorLiteral(red: 0.926155746, green: 0.9410773516, blue: 0.9455420375, alpha: 1))
@@ -35,15 +37,19 @@ class PropertyCell: UITableViewCell {
         propertyImageView.sd_setImage(with: URL(string: url), placeholderImage: nil)
     }
     
+    private func saveFavourite(ids: [Int]) {
+        localStorageService.deleteFavourites()
+        localStorageService.save(favourites: ids)
+    }
+    
     func prepareStarButton() {
         starButton.rx.tap
             .subscribe({ [weak self] _ in
-                print(self?.id)
                 self?.buttonPressed()
             })
             .disposed(by: cellBag)
     }
-
+    
     func buttonPressed() {
         activateButton(bool: !isOn)
     }
@@ -52,20 +58,20 @@ class PropertyCell: UITableViewCell {
         self.isOn = bool
         let color = bool ? UIColor.init(cgColor: #colorLiteral(red: 0.9607843161, green: 0.7058823705, blue: 0.200000003, alpha: 1)) : UIColor.init(cgColor: #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1))
         starButton.tintColor = color
-  
+        
         guard let id = Int(self.id) else { return }
         
         if isOn {
             Utility.Instance.favIDs.append(id)
+            let favs = Utility.Instance.favIDs
+            saveFavourite(ids: favs)
             Utility.Instance.checkedCells.append(self.indexPath)
             Utility.Instance.propertyListViewModel.setPropertyVmFavAt(self.indexPath, bool: true)
-            print("Hej: \(Utility.Instance.propertyListViewModel.propertyAt(self.indexPath))")
         }else{
             // remove unchecked cell from list
             if let index = Utility.Instance.checkedCells.firstIndex(of: self.indexPath){
                 Utility.Instance.checkedCells.remove(at: index)
                 Utility.Instance.propertyListViewModel.setPropertyVmFavAt(self.indexPath, bool: false)
-                print("Tja: \(Utility.Instance.propertyListViewModel.propertyAt(self.indexPath))")
             }
             if let fav = Utility.Instance.favIDs.firstIndex(of: id) {
                 Utility.Instance.favIDs.remove(at: fav)

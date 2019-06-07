@@ -10,10 +10,10 @@
 		422781D3DA0504EE7A3FFF1C /* Pods_realEstateListUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1780F184C70894CD36B826D5 /* Pods_realEstateListUITests.framework */; };
 		9533123B2FB9BF07C9C4ABFA /* Pods_realEstateList.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0113BACBC74AA935146D5976 /* Pods_realEstateList.framework */; };
 		994B97FC022BA544F3E8BCB4 /* Pods_realEstateListTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 436EB170FB1C30D0B26E9CDB /* Pods_realEstateListTests.framework */; };
-		9B3F50B022A665AD00887B21 /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3F50AF22A665AD00887B21 /* StorageService.swift */; };
 		9B3F50B522A68AB300887B21 /* FavStarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3F50B422A68AB300887B21 /* FavStarButton.swift */; };
 		9B3F50B722A6D8BF00887B21 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3F50B622A6D8BF00887B21 /* Utility.swift */; };
 		9B3F50B922A7C45E00887B21 /* MainTabBarControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3F50B822A7C45E00887B21 /* MainTabBarControllerViewController.swift */; };
+		9B3F50BB22A9B80500887B21 /* LocalStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3F50BA22A9B80500887B21 /* LocalStorageService.swift */; };
 		9B4AB315229E926A00185C5C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4AB314229E926A00185C5C /* AppDelegate.swift */; };
 		9B4AB317229E926A00185C5C /* PropertyListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4AB316229E926A00185C5C /* PropertyListViewController.swift */; };
 		9B4AB31A229E926A00185C5C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B4AB318229E926A00185C5C /* Main.storyboard */; };
@@ -53,10 +53,10 @@
 		648B2A97C9358F901B2D6336 /* Pods-realEstateList.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-realEstateList.debug.xcconfig"; path = "Target Support Files/Pods-realEstateList/Pods-realEstateList.debug.xcconfig"; sourceTree = "<group>"; };
 		8510A939D79DD5074A808DA1 /* Pods-realEstateListTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-realEstateListTests.debug.xcconfig"; path = "Target Support Files/Pods-realEstateListTests/Pods-realEstateListTests.debug.xcconfig"; sourceTree = "<group>"; };
 		9186FC8165C8769DD2D41BF1 /* Pods-realEstateListUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-realEstateListUITests.debug.xcconfig"; path = "Target Support Files/Pods-realEstateListUITests/Pods-realEstateListUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		9B3F50AF22A665AD00887B21 /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
 		9B3F50B422A68AB300887B21 /* FavStarButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavStarButton.swift; sourceTree = "<group>"; };
 		9B3F50B622A6D8BF00887B21 /* Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		9B3F50B822A7C45E00887B21 /* MainTabBarControllerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarControllerViewController.swift; sourceTree = "<group>"; };
+		9B3F50BA22A9B80500887B21 /* LocalStorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalStorageService.swift; sourceTree = "<group>"; };
 		9B4AB311229E926A00185C5C /* realEstateList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = realEstateList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B4AB314229E926A00185C5C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9B4AB316229E926A00185C5C /* PropertyListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyListViewController.swift; sourceTree = "<group>"; };
@@ -205,8 +205,8 @@
 		9B4AB345229E9AEE00185C5C /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				9B3F50AF22A665AD00887B21 /* StorageService.swift */,
 				9B3F50B622A6D8BF00887B21 /* Utility.swift */,
+				9B3F50BA22A9B80500887B21 /* LocalStorageService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -474,6 +474,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9B3F50B722A6D8BF00887B21 /* Utility.swift in Sources */,
+				9B3F50BB22A9B80500887B21 /* LocalStorageService.swift in Sources */,
 				9BDF553622A3F68900724C2B /* Properties.swift in Sources */,
 				9BDF553922A3F99200724C2B /* URLRequest+Extensions.swift in Sources */,
 				9BDF554022A4108E00724C2B /* PropertyCell.swift in Sources */,
@@ -481,7 +482,6 @@
 				9BDF553C22A4055E00724C2B /* PropertyViewModel.swift in Sources */,
 				9B3F50B522A68AB300887B21 /* FavStarButton.swift in Sources */,
 				9B4AB317229E926A00185C5C /* PropertyListViewController.swift in Sources */,
-				9B3F50B022A665AD00887B21 /* StorageService.swift in Sources */,
 				9B4AB315229E926A00185C5C /* AppDelegate.swift in Sources */,
 				9B3F50B922A7C45E00887B21 /* MainTabBarControllerViewController.swift in Sources */,
 			);

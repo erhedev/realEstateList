@@ -22,7 +22,6 @@ class FavouritesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         favTableView.register(UINib.init(nibName: "PropertyCell", bundle: nil), forCellReuseIdentifier: "PropertyCell")
     }
     
@@ -32,7 +31,6 @@ class FavouritesViewController: UIViewController {
         favListViewModel = PropertyListViewModel(Utility.Instance.propertyListViewModel.getFavourites())
         self.favTableView.reloadData()
     }
-    
     
 }
 
@@ -52,23 +50,12 @@ extension FavouritesViewController: UITableViewDelegate, UITableViewDataSource {
         }
         
         cell.indexPath = indexPath.row
-        
-        var utility = Utility.Instance.checkedCells
-        if utility.contains(indexPath.row){
-            var vm = favListViewModel.propertyAt(indexPath.row)
-//            vm.setAsFavourite(bool: true)
-            
-            print(vm.address)
-            print(vm.id)
-            print(vm.isFavourite)
-            
-        }
-        
+        let checkedCells = Utility.Instance.checkedCells
         let propertyViewModel = self.favListViewModel.propertyAt(indexPath.row)
         
         propertyViewModel.isOn.subscribe(onNext: { value in
             print(value)
-            if utility.contains(indexPath.row){
+            if checkedCells.contains(indexPath.row){
                 cell.activateButton(bool: true)
             } else {cell.activateButton(bool: value)}
         })
@@ -90,8 +77,6 @@ extension FavouritesViewController: UITableViewDelegate, UITableViewDataSource {
         propertyViewModel.price.asDriver(onErrorJustReturn: "")
             .drive(cell.priceLabel.rx.text)
             .disposed(by: disposeBag)
-   
-        
         
         return cell
         

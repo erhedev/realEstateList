@@ -13,22 +13,26 @@ import RxCocoa
 class PropertyListViewController: UIViewController {
     
     @IBOutlet weak var propertiesTableView: UITableView!
-  
+    
     let disposeBag = DisposeBag()
-//    private var propertyListViewModel: PropertyListViewModel!
-
+    
+    private var localStorageService = LocalStorageService()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        populateProprerties()
+        if let favs = fetchFavourites() {
+            Utility.Instance.favIDs = favs
+            print(favs)
+        }
         
+        populateProprerties()
         propertiesTableView.register(UINib.init(nibName: "PropertyCell", bundle: nil), forCellReuseIdentifier: "PropertyCell")
         
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        print("viewDidAppear")
         self.propertiesTableView.reloadData()
     }
     
@@ -37,17 +41,22 @@ class PropertyListViewController: UIViewController {
         let resource = Resource<PropertyResponse>(url: URL(string: "https://www.booli.se/public/search-results.json")!)
         
         URLRequest.load(resource: resource)
-                .subscribe(onNext: { propertyResponse in
-                
-                print(propertyResponse)
+            .subscribe(onNext: { propertyResponse in
                 let properties = propertyResponse.results
-                print(properties)
                 Utility.Instance.propertyListViewModel = PropertyListViewModel(properties)
-                    print(Utility.Instance.propertyListViewModel.propertyAt(0))
                 DispatchQueue.main.async {
                     self.propertiesTableView.reloadData()
                 }
             }).disposed(by: disposeBag)
+    }
+    
+    private func fetchFavourites() -> [Int]? {
+        let favourites: [Int]
+        if let favs = localStorageService.fetchFavourites() {
+            favourites = favs
+            return favourites
+        }
+        return nil
     }
     
 }
@@ -69,23 +78,13 @@ extension PropertyListViewController: UITableViewDelegate, UITableViewDataSource
         
         cell.indexPath = indexPath.row
         
-        var utility = Utility.Instance.checkedCells
-//        if utility.contains(indexPath.row){
-//            Utility.Instance.propertyListViewModel.setPropertyVmFavAt(indexPath.row, bool: true)
-////            var vm = Utility.Instance.propertyListViewModel.propertyAt(indexPath.row)
-////            vm.isFavourite = true
-////
-////            print(vm.address)
-////            print(vm.id)
-////            print(vm.isFavourite)
-//
-//        }
-    
-        var propertyViewModel = Utility.Instance.propertyListViewModel.propertyAt(indexPath.row)
+        var checkedCells = Utility.Instance.checkedCells
+        
+        let propertyViewModel = Utility.Instance.propertyListViewModel.propertyAt(indexPath.row)
         
         propertyViewModel.isOn.subscribe(onNext: { value in
             print(value)
-            if utility.contains(indexPath.row){
+            if checkedCells.contains(indexPath.row){
                 print(Utility.Instance.propertyListViewModel.propertyAt(indexPath.row))
                 cell.activateButton(bool: value)
             } else {cell.activateButton(bool: value)}
@@ -98,6 +97,13 @@ extension PropertyListViewController: UITableViewDelegate, UITableViewDataSource
         
         propertyViewModel.id.subscribe(onNext: { element in
             print(element)
+            
+            if let savedIds = self.fetchFavourites() {
+                if savedIds.contains(element) {
+                    cell.activateButton(bool: true)
+                    Utility.Instance.propertyListViewModel.setPropertyVmFavAt(cell.indexPath, bool: true)
+                }
+            }
             cell.id = String(element)
         }).disposed(by: disposeBag)
         

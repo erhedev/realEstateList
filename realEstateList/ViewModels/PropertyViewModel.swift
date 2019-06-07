@@ -50,12 +50,6 @@ struct PropertyViewModel {
     }
 }
 
-//extension PropertyViewModel {
-//    mutating func setAsFavourite(bool: Bool) {
-//        self.isFavourite = bool
-//    }
-//}
-
 extension PropertyViewModel {
    
     var address: Observable<String> {
