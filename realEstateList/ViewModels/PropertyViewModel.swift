@@ -56,7 +56,7 @@ extension PropertyViewModel {
         return Observable<String>.just(property.streetAddress)
     }
     var price: Observable<String> {
-        return Observable<String>.just(String(property.listPrice.formattedWithSeparator + " kr"))
+        return Observable<String>.just(String(property.listPrice.formattedWithSeparator + " KR"))
     }
     var thumbNailURL: Observable<String> {
         return Observable<String>.just(property.thumb)
