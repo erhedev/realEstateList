@@ -14,6 +14,8 @@
 		9B3F50B722A6D8BF00887B21 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3F50B622A6D8BF00887B21 /* Utility.swift */; };
 		9B3F50B922A7C45E00887B21 /* MainTabBarControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3F50B822A7C45E00887B21 /* MainTabBarControllerViewController.swift */; };
 		9B3F50BB22A9B80500887B21 /* LocalStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3F50BA22A9B80500887B21 /* LocalStorageService.swift */; };
+		9B3F50BD22AA655300887B21 /* Int+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3F50BC22AA655300887B21 /* Int+Extensions.swift */; };
+		9B3F50BF22AA658200887B21 /* Formatter+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3F50BE22AA658200887B21 /* Formatter+Extension.swift */; };
 		9B4AB315229E926A00185C5C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4AB314229E926A00185C5C /* AppDelegate.swift */; };
 		9B4AB317229E926A00185C5C /* PropertyListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4AB316229E926A00185C5C /* PropertyListViewController.swift */; };
 		9B4AB31A229E926A00185C5C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B4AB318229E926A00185C5C /* Main.storyboard */; };
@@ -57,6 +59,8 @@
 		9B3F50B622A6D8BF00887B21 /* Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		9B3F50B822A7C45E00887B21 /* MainTabBarControllerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarControllerViewController.swift; sourceTree = "<group>"; };
 		9B3F50BA22A9B80500887B21 /* LocalStorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalStorageService.swift; sourceTree = "<group>"; };
+		9B3F50BC22AA655300887B21 /* Int+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Extensions.swift"; sourceTree = "<group>"; };
+		9B3F50BE22AA658200887B21 /* Formatter+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Formatter+Extension.swift"; sourceTree = "<group>"; };
 		9B4AB311229E926A00185C5C /* realEstateList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = realEstateList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B4AB314229E926A00185C5C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9B4AB316229E926A00185C5C /* PropertyListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyListViewController.swift; sourceTree = "<group>"; };
@@ -225,6 +229,8 @@
 			isa = PBXGroup;
 			children = (
 				9BDF553822A3F99200724C2B /* URLRequest+Extensions.swift */,
+				9B3F50BC22AA655300887B21 /* Int+Extensions.swift */,
+				9B3F50BE22AA658200887B21 /* Formatter+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -480,8 +486,10 @@
 				9BDF554022A4108E00724C2B /* PropertyCell.swift in Sources */,
 				9B4AB348229E9BC400185C5C /* FavouritesViewController.swift in Sources */,
 				9BDF553C22A4055E00724C2B /* PropertyViewModel.swift in Sources */,
+				9B3F50BF22AA658200887B21 /* Formatter+Extension.swift in Sources */,
 				9B3F50B522A68AB300887B21 /* FavStarButton.swift in Sources */,
 				9B4AB317229E926A00185C5C /* PropertyListViewController.swift in Sources */,
+				9B3F50BD22AA655300887B21 /* Int+Extensions.swift in Sources */,
 				9B4AB315229E926A00185C5C /* AppDelegate.swift in Sources */,
 				9B3F50B922A7C45E00887B21 /* MainTabBarControllerViewController.swift in Sources */,
 			);
